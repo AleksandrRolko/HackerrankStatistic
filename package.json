@@ -3,18 +3,21 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build --aot --target=production"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^8.0.3",
     "@angular/cdk": "^8.0.1",
+    "@angular/cli": "~8.0.4",
     "@angular/common": "~8.0.1",
     "@angular/compiler": "~8.0.1",
+    "@angular/compiler-cli": "~8.0.1",
     "@angular/core": "~8.0.1",
     "@angular/forms": "~8.0.1",
     "@angular/http": "latest",
@@ -27,17 +30,17 @@
     "chart.js": "^2.8.0",
     "cors": "^2.8.5",
     "ember-cli-cors": "0.0.2",
+    "express": "^4.17.1",
     "jquery": "^3.4.1",
     "ng2-charts": "^2.3.0",
     "ngx-bootstrap": "^5.0.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.9.0",
+    "typescript": "~3.4.3",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.800.0",
-    "@angular/cli": "~8.0.4",
-    "@angular/compiler-cli": "~8.0.1",
     "@angular/language-service": "~8.0.1",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
@@ -52,7 +55,10 @@
     "karma-jasmine-html-reporter": "^1.4.0",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
-    "tslint": "~5.15.0",
-    "typescript": "~3.4.3"
+    "tslint": "~5.15.0"
+  },
+  "engines": {
+    "node": "10.16.0",
+    "npm": "6.9.0"
   }
 }

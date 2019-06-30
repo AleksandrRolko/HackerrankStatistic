@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ResultService} from '../result/result.service';
 import {Result} from '../result/result';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class TableService {
     return ['Problem', 'Category', 'Language', 'Time', 'Result', 'Score'];
   }
 
-  getRows(): Result[] {
+  getRows(): Observable<any> {
     return this.resultService.getResult();
   }
 }

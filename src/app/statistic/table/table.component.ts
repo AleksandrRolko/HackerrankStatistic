@@ -10,12 +10,29 @@ import {TableService} from './table.service';
 export class TableComponent implements OnInit {
 
   columns: string[];
-  rows: Result[];
+  rows: any[];
 
-  constructor(private tableService: TableService) { }
+  constructor(private tableService: TableService) {
+  }
 
   ngOnInit() {
     this.columns = this.tableService.getColumns();
-    this.rows = this.tableService.getRows();
+    this.tableService.getRows()
+      .subscribe(data => {
+        let results = [];
+        data.models.forEach(function(model) {
+          let result = {
+            challenge: model.challenge.name,
+            category: model.kind,
+            language: model.language,
+            timeAgo: model.time_ago,
+            status: model.status,
+            score: model.scorea
+          };
+          results.push(result);
+        });
+
+        this.rows = results;
+      });
   }
 }
