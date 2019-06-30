@@ -1,0 +1,11 @@
+<app-header></app-header>
+
+<div class="chart-container flex-container">
+  <canvas baseChart
+          [datasets]="lineChartData"
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions"
+          [legend]="lineChartLegend"
+          [chartType]="lineChartType">
+  </canvas>
+</div>

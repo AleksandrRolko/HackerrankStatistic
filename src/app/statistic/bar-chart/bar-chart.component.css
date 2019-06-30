@@ -1,0 +1,9 @@
+.chart-container {
+  position: relative;
+}
+
+.chart-container canvas {
+  padding: 100px;
+  height: 450px;
+  width: 800px;
+}

@@ -1,3 +1,37 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+.lead {
+  padding: 20px;
+  text-align: center;
+  font-size: 25px;
+  font-family: monaco,Courier,monospace;
+}
+
 body {
   margin: 0;
+}
+
+.custom-buttons {
+  background: #1ba94c;
+  border: 1px solid #179342;
+  box-shadow: 0 4px 12px 0 rgba(27,169,76,.5);
+  height: 56px;
+  font-size: 18px;
+  font-weight: bold;
+  min-width: 240px;
+  border-radius: 2px;
+  word-spacing: -2px;
+  position: relative;
+  text-align: center;
+  margin: 20px;
+}
+
+.btn-text {
+  font-family: monaco,Courier,monospace;
+  border: 0;
+  font-size: 100%;
+  margin: 0;
+  outline: 0;
+  padding: 0;
+  vertical-align: baseline;
 }

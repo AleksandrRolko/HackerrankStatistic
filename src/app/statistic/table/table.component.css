@@ -1,0 +1,11 @@
+.table {
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  margin: 0;
+  outline: 0;
+  padding: 100px;
+  vertical-align: baseline;
+  font-weight: 500;
+  text-align: center !important;
+}

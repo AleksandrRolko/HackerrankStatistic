@@ -1,0 +1,28 @@
+<app-header></app-header>
+<table class="table">
+  <tr>
+    <th *ngFor="let col of columns">
+      {{col}}
+    </th>
+  </tr>
+  <tr *ngFor="let row of rows">
+    <td>
+      {{row.challenge}}
+    </td>
+    <td>
+      {{row.category}}
+    </td>
+    <td>
+      {{row.language}}
+    </td>
+    <td>
+      {{row.timeAgo}}
+    </td>
+    <td>
+      {{row.status}}
+    </td>
+    <td>
+      {{row.score}}
+    </td>
+  </tr>
+</table>

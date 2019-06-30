@@ -1,5 +1,24 @@
-.header {
+.navbar {
   background-color: #39424E;
   text-align: left;
-  padding: 20px;
+  vertical-align: middle;
+  padding: 0 40px;
+}
+
+.nav-link {
+  position: relative;
+  display: inline-block;
+  box-sizing: border-box;
+  height: 60px;
+  color: #b7c9cc;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 14px;
+  font-family: inherit;
+  line-height: 60px;
+  padding: 0 15px;
+}
+
+.nav-link:hover {
+  color: #FFFFFF;
 }
