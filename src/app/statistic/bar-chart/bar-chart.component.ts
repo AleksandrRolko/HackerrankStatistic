@@ -10,22 +10,18 @@ import {ResultService} from '../result/result.service';
 })
 export class BarChartComponent implements OnInit {
 
-  public isVisible: boolean;
-
   constructor(private resultService: ResultService) {
   }
 
   ngOnInit(): void {
-    this.isVisible = true;
-
     this.resultService.getResult()
       .toPromise()
       .then(data => {
 
         const map = new Map();
 
-        data.models.forEach(function(model) {
-          if (map.get(model.kind) == undefined) {
+        data.models.forEach(model => {
+          if (map.get(model.kind) === undefined) {
             map.set(model.kind, Number(model.score));
           } else {
             map.set(model.kind, map.get(model.kind) + Number(model.score));
@@ -67,6 +63,4 @@ export class BarChartComponent implements OnInit {
         });
       });
   }
-
-  public toggle(): void { this.isVisible = !this.isVisible; }
 }

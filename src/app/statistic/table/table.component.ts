@@ -7,7 +7,6 @@ import {TableService} from './table.service';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-  public isVisible: boolean;
 
   columns: string[];
   rows: any[];
@@ -16,8 +15,6 @@ export class TableComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isVisible = false;
-
     this.columns = this.tableService.getColumns();
     this.tableService.getRows()
       .subscribe(data => {
@@ -36,9 +33,5 @@ export class TableComponent implements OnInit {
 
         this.rows = results;
       });
-  }
-
-  public toggle(): void {
-    this.isVisible = !this.isVisible;
   }
 }
