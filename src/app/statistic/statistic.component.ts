@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {ResultService} from './result/result.service';
 
 @Component({
   selector: 'app-statistic',
@@ -8,11 +7,9 @@ import {ResultService} from './result/result.service';
 })
 export class StatisticComponent implements OnInit {
 
-  constructor(private resultService: ResultService) {
+  constructor() {
   }
 
   ngOnInit() {
-    let results = this.resultService.getResult();
-    
   }
 }

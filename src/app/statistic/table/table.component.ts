@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Result} from '../result/result';
 import {TableService} from './table.service';
 
 @Component({
@@ -9,6 +8,8 @@ import {TableService} from './table.service';
 })
 export class TableComponent implements OnInit {
 
+  public isVisible: boolean;
+
   columns: string[];
   rows: any[];
 
@@ -16,6 +17,8 @@ export class TableComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isVisible = false;
+
     this.columns = this.tableService.getColumns();
     this.tableService.getRows()
       .subscribe(data => {
@@ -27,7 +30,7 @@ export class TableComponent implements OnInit {
             language: model.language,
             timeAgo: model.time_ago,
             status: model.status,
-            score: model.scorea
+            score: model.score
           };
           results.push(result);
         });
@@ -35,4 +38,6 @@ export class TableComponent implements OnInit {
         this.rows = results;
       });
   }
+
+  public toggle(): void { this.isVisible = !this.isVisible; }
 }

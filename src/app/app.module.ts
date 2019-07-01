@@ -11,7 +11,7 @@ import {TableComponent} from './statistic/table/table.component';
 import {MatTableModule} from '@angular/material';
 import {BarChartComponent} from './statistic/bar-chart/bar-chart.component';
 import {ChartsModule} from 'ng2-charts';
-import { LineChartComponent } from './statistic/line-chart/line-chart.component';
+import {LineChartComponent} from './statistic/line-chart/line-chart.component';
 
 const statisticRoutes: Routes = [
   {
