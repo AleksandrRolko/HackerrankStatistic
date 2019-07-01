@@ -21,21 +21,21 @@ export class LineChartComponent implements OnInit {
     this.http.get<Data>('./assets/result.json')
       .toPromise()
       .then(data => {
-        let map = new Map();
+        const map = new Map();
         data.models.forEach(function(model) {
           let date = new Date();
 
           if (/.*(hours|hour)/.test(model.time_ago)) {
-            let hour = model.time_ago.match(/\d+/g).map(Number)[0];
+            const hour = model.time_ago.match(/\d+/g).map(Number)[0];
             date = new Date(Date.now());
             date.setHours(date.getHours() - Number(hour));
           } else if (/.*(days|day)/.test(model.time_ago)) {
-            let day = model.time_ago.match(/\d+/g).map(Number)[0];
+            const day = model.time_ago.match(/\d+/g).map(Number)[0];
             date = new Date(Date.now());
             date.setDate(date.getDate() - Number(day));
           }
 
-          let strDate = date.toLocaleDateString('en-US');
+          const strDate = date.toLocaleDateString('en-US');
           console.log(strDate);
 
           if (map.get(strDate) == undefined) {
@@ -45,30 +45,48 @@ export class LineChartComponent implements OnInit {
           }
         });
 
-        let canvas = <HTMLCanvasElement> document.getElementById('lineChart');
-        let ctx = canvas.getContext('2d');
-        let lineChart = new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: Array.from(map.keys()),
-            datasets: [
-              {
-                data: Array.from(map.values()),
-                label: 'Score',
-                backgroundColor: 'rgba(27, 169, 76, 0.3)',
-                borderColor: 'rgba(27, 169, 76, 1)',
-                pointBackgroundColor: 'rgba(27, 169, 76, 1)',
-                pointBorderColor: 'rgba(27, 169, 76, 1)',
-                pointHoverBackgroundColor: 'rgba(0, 19, 25, 0.5)',
-                pointHoverBorderColor: 'rgba(0, 19, 25, 1)',
-                pointHoverRadius: 7,
-                pointRadius: 9
+        const canvas = document.getElementById('lineChart') as HTMLCanvasElement;
+        const ctx = canvas.getContext('2d');
+
+        const dataSet = {
+          labels: Array.from(map.keys()),
+          datasets: [
+            {
+              data: Array.from(map.values()),
+              label: 'Score',
+              backgroundColor: 'rgba(27, 169, 76, 0.3)',
+              borderColor: 'rgba(27, 169, 76, 1)',
+              pointBackgroundColor: 'rgba(27, 169, 76, 1)',
+              pointBorderColor: 'rgba(27, 169, 76, 1)',
+              pointHoverBackgroundColor: 'rgba(0, 19, 25, 0.5)',
+              pointHoverBorderColor: 'rgba(0, 19, 25, 1)',
+              pointHoverRadius: 7,
+              pointRadius: 9
+            }
+          ]
+        };
+
+        const option = {
+          scaleShowVerticalLines: false,
+          responsive: true,
+          scales: {
+            yAxes: [{
+              ticks: {
+                beginAtZero: true
               }
-            ]
+            }]
           }
+        };
+
+        const lineChart = new Chart(ctx, {
+          type: 'line',
+          data: dataSet,
+          options: option
         });
       });
   }
 
-  public toggle(): void { this.isVisible = !this.isVisible; }
+  public toggle(): void {
+    this.isVisible = !this.isVisible;
+  }
 }

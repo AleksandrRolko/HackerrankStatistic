@@ -7,7 +7,6 @@ import {TableService} from './table.service';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
-
   public isVisible: boolean;
 
   columns: string[];
@@ -22,9 +21,9 @@ export class TableComponent implements OnInit {
     this.columns = this.tableService.getColumns();
     this.tableService.getRows()
       .subscribe(data => {
-        let results = [];
+        const results = [];
         data.models.forEach(function(model) {
-          let result = {
+          const result = {
             challenge: model.challenge.name,
             category: model.kind,
             language: model.language,
@@ -39,5 +38,7 @@ export class TableComponent implements OnInit {
       });
   }
 
-  public toggle(): void { this.isVisible = !this.isVisible; }
+  public toggle(): void {
+    this.isVisible = !this.isVisible;
+  }
 }

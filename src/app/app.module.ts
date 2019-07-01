@@ -12,6 +12,8 @@ import {MatTableModule} from '@angular/material';
 import {BarChartComponent} from './statistic/bar-chart/bar-chart.component';
 import {ChartsModule} from 'ng2-charts';
 import {LineChartComponent} from './statistic/line-chart/line-chart.component';
+import {MatFormFieldModule, MatInputModule, MatPaginatorModule, MatSortModule} from '@angular/material';
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 const statisticRoutes: Routes = [
   {
@@ -60,7 +62,13 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule,
     MatTableModule,
-    ChartsModule
+    ChartsModule,
+    MatFormFieldModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatInputModule,
+    BrowserAnimationsModule,
+    NoopAnimationsModule
   ],
   providers: [ResultService],
   bootstrap: [AppComponent]
