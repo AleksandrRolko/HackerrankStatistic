@@ -12,7 +12,7 @@ export class TableService {
   }
 
   getColumns(): string[] {
-    return ['Problem', 'Category', 'Language', 'Time', 'Result', 'Score'];
+    return ['Challenge', 'Category', 'Language', 'Time', 'Result', 'Score'];
   }
 
   getRows(): Observable<any> {

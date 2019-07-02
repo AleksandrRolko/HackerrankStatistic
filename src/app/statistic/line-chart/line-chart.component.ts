@@ -69,12 +69,6 @@ export class LineChartComponent implements OnInit {
             data: Array.from(map.get(key).values()),
             label: key,
             backgroundColor: this.randomColor(),
-            // backgroundColor: 'rgba(27, 169, 76, 0.3)',
-            // borderColor: 'rgba(27, 169, 76, 1)',
-            // pointBackgroundColor: 'rgba(27, 169, 76, 1)',
-            // pointBorderColor: 'rgba(27, 169, 76, 1)',
-            // pointHoverBackgroundColor: 'rgba(0, 19, 25, 0.5)',
-            // pointHoverBorderColor: 'rgba(0, 19, 25, 1)',
             pointHoverRadius: 7,
             pointRadius: 9
           };
