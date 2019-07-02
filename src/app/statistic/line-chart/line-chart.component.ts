@@ -22,7 +22,9 @@ export class LineChartComponent implements OnInit {
     this.http.get<Data>('./assets/result.json')
       .toPromise()
       .then(data => {
+        const days = new Set();
         const map = new Map();
+
         data.models.forEach(model => {
           let date = new Date();
 
@@ -38,14 +40,20 @@ export class LineChartComponent implements OnInit {
 
           const strDate = date.toLocaleDateString('en-US');
 
-          if (map.get(strDate) === undefined) {
-            const categoriesMap = new Map();
-            categoriesMap.set(model.kind, Number(model.score));
-            map.set(strDate, categoriesMap);
+          days.add(strDate);
+
+          if (map.get(model.kind) === undefined) {
+            const dayScoreMap = new Map();
+            dayScoreMap.set(strDate, Number(model.score));
+            map.set(model.kind, dayScoreMap);
           } else {
-            const categoriesMap = map.get(strDate);
-            categoriesMap.set(model.kind, categoriesMap.get(model.kind) + Number(model.score));
-            map.set(strDate, categoriesMap);
+            const dayScoreMap = map.get(model.kind);
+            if (dayScoreMap.get(strDate) === undefined) {
+              dayScoreMap.set(strDate, Number(model.score));
+            } else {
+              dayScoreMap.set(strDate, dayScoreMap.get(strDate) + Number(model.score));
+            }
+            map.set(model.kind, dayScoreMap);
           }
         });
 
@@ -58,14 +66,15 @@ export class LineChartComponent implements OnInit {
 
         map.forEach((value, key) => {
           const dataLine = {
-            data: Array.from(map.get(key).keys()),
+            data: Array.from(map.get(key).values()),
             label: key,
-            backgroundColor: 'rgba(27, 169, 76, 0.3)',
-            borderColor: 'rgba(27, 169, 76, 1)',
-            pointBackgroundColor: 'rgba(27, 169, 76, 1)',
-            pointBorderColor: 'rgba(27, 169, 76, 1)',
-            pointHoverBackgroundColor: 'rgba(0, 19, 25, 0.5)',
-            pointHoverBorderColor: 'rgba(0, 19, 25, 1)',
+            backgroundColor: this.randomColor(),
+            // backgroundColor: 'rgba(27, 169, 76, 0.3)',
+            // borderColor: 'rgba(27, 169, 76, 1)',
+            // pointBackgroundColor: 'rgba(27, 169, 76, 1)',
+            // pointBorderColor: 'rgba(27, 169, 76, 1)',
+            // pointHoverBackgroundColor: 'rgba(0, 19, 25, 0.5)',
+            // pointHoverBorderColor: 'rgba(0, 19, 25, 1)',
             pointHoverRadius: 7,
             pointRadius: 9
           };
@@ -73,7 +82,7 @@ export class LineChartComponent implements OnInit {
         });
 
         const dataSetByDay = {
-          labels: Array.from(map.keys()),
+          labels: Array.from(days),
           datasets: dataSets
         };
 
@@ -95,6 +104,13 @@ export class LineChartComponent implements OnInit {
           options: option
         });
       });
+  }
+
+  private randomColor() {
+    const r = Math.floor(Math.random() * 255);
+    const g = Math.floor(Math.random() * 255);
+    const b = Math.floor(Math.random() * 255);
+    return 'rgb(' + r + ',' + g + ',' + b + ', 0.5)';
   }
 
   private createChartByDays() {
